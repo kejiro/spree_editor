@@ -1,13 +1,13 @@
+# frozen_string_literal: true
+
 class Ckeditor::Picture < Ckeditor::Asset
-  has_attached_file :data, styles: { content: '800>', thumb: '118x100#' }
-
-  Ckeditor::Picture.attachment_definitions[:data][:path] = '/:class/:id/:style/:basename.:extension'
-  Ckeditor::Picture.attachment_definitions[:data][:url] = '/:class/:id/:style/:basename.:extension'
-
-  validates_attachment_size :data, less_than: 2.megabytes
-  validates_attachment_presence :data
+  # for validation, see https://github.com/igorkasyanchuk/active_storage_validations
 
   def url_content
-    url(:content)
+    rails_representation_url(storage_data.variant(resize: '800>').processed, only_path: true)
+  end
+
+  def url_thumb
+    rails_representation_url(storage_data.variant(resize: '118x100').processed, only_path: true)
   end
 end
