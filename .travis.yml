@@ -1,5 +1,5 @@
 sudo: required
-dist: trusty
+dist: focal
 
 script:
   - bundle exec rake test_app
@@ -16,9 +16,9 @@ env:
 language: ruby
 
 rvm:
-  - 2.5.1
-  - 2.4.4
-  - 2.3.8
+  - 2.5.8
+  - 2.6.6
+  - 2.7.1
 
 gemfile:
   - gemfiles/spree_4_0.gemfile
@@ -28,17 +28,6 @@ gemfile:
 matrix:
   allow_failures:
     - gemfile: gemfiles/spree_master.gemfile
-  exclude:
-    - rvm: 2.3.8
-      gemfile: gemfiles/spree_4_0.gemfile
-    - rvm: 2.4.4
-      gemfile: gemfiles/spree_4_0.gemfile
-    - rvm: 2.3.8
-      gemfile: gemfiles/spree_master.gemfile
-    - rvm: 2.4.4
-      gemfile: gemfiles/spree_master.gemfile
-    - rvm: 2.5.1
-      gemfile: gemfiles/spree_3_5.gemfile
 
 before_install:
   - mysql -u root -e "GRANT ALL ON *.* TO 'travis'@'%';"
