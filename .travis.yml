@@ -10,8 +10,8 @@ addons:
   postgresql: 11
 
 env:
-  - DB=mysql
-  - DB=postgres
+  - DB=mysql DB_HOST=127.0.0.1
+  - DB=postgres DB_HOST=localhost DB_USERNAME=postgres
 
 language: ruby
 
